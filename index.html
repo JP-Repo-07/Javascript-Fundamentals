@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="Javascript" href="script.js">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="hotdog">
+        <p id="p1">Paragraph 1</p>
+        <p id="p2">Paragraph 2</p>
+        <p id="p3">Paragraph 3</p>
+    </div>
+
+    <div id="par">
+        <p id="p11">New Paragraph 1</p>
+        <p id="p21">Current Paragraph 2</p>
+        <p id="p31">Old Paragraph 3</p>
+    </div>
+
+    <div id="demo"> Some Content</div>
+
+    <div id="someTxt" style="width: 500px">Some Text</div>
+
+    <a href="www.youtube.com">youtube</a>
+    <a href="www.google.com">google</a>
+
+    <h1 id="time"></h1>
+
+    <p class="txt">Hi</p>
+
+    <p class="txt">Hello</p>
+
+    <p class="txt">Yo</p>
+
+    <img id="image" src="touch.jpg" alt="hand of god"/>
+
+    <script>
+
+        var a = 10;
+        document.write(a);
+        a = 12;
+        var b = 12;
+        document.write("<br/>")
+        document.write(a + b);
+        document.write("<br/>")
+        document.write(a == 12);
+        document.write("<br/>")
+        document.write(b == 13);
+        document.write("<h4>Hello World</h4>");
+        document.write("<br/>")
+        var string2 = "Hi";
+        var string3 = "Hello";
+        document.write(string2 + " " + string3);
+        document.write("<br/>")
+
+        /*Can use single and double quotes inside a string using
+        backslash (\' or \") */
+        var string1 = "Hellow World! \'Wazzup\'";
+        document.write(string1);
+
+        document.write("<br/>")
+        var num1 = 2;
+        var num2 = 4;
+        if (num1 > num2) {
+            //alert("Num1 is greater than Num2");
+            document.write("Num1 is greater than Num2");
+        } else {
+            //alert("Num1 is less than Num2");
+            document.write ("Num1 is less than Num2");
+        }
+
+        document.write("<br/>")
+
+        var day = 2;
+        switch (day) {
+            case 1:
+                document.write ("Monday");
+                break;
+            case 2:
+                document.write ("Tuesday");
+                break; 
+            case 3: 
+                document.write ("Wednesday");
+                break;
+            default: 
+                document.write ("Another Day");
+                break;
+        }
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        for (var i = 1; i <= 5; i++) {
+            document.write (i, " <br/>");
+        }
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var num4 = 0;
+        while (num4 <= 7) {
+            document.write (num4, "<br/>");
+            num4++;
+        }
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var count = 1;
+        do {
+            document.write (count, "<br/>");
+            count++;
+        } while (count <= 5);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        for (var i = 0; i <= 5; i++) {
+            if (i == 3) {
+                break;
+            }
+            document.write(i, "<br/>")
+        }
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        for (var i = 0; i <= 5; i++) {
+            if (i == 4) {
+                continue;
+            }
+            document.write(i, "<br/>")
+        }
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        for (var i = 4; i < 8; i++) {
+            if (i == 6) {
+                continue;
+            }
+            document.write(i, "<br/>")
+        }
+
+        /*function alertMessage () {
+            alert("Wazzup!");
+        }*/
+        //alertMessage();
+
+        function Message(name, age) {
+            document.write("<h2>Hello!" + name + " " + age +"</h2>");
+        }
+
+        Message("Paul", 23);
+        Message("Jhon", 25);
+        Message("Pao", 20);
+
+        function calculate (x, y) {
+            return x * (y + 5)
+        }
+
+        var result = calculate(2, 10);
+        document.write(result);
+
+        var user = prompt("Enter your age", 25);
+        alert(user);
+
+        var confirmation = confirm("Do you want to stay?");
+        if (confirmation == true) {
+            alert("thank you for staying");
+        }else {
+            alert("Goodbye");
+        }
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        //Object
+        var Dogs = {
+            name: "Titan",
+            age: 7,
+            color: "Black",
+            legs: 4
+        }
+
+        function dogs (name, age, color, legs) {
+            this.name = name;
+            this.age = age;
+            this.color = color;
+            this.legs = legs;
+        }
+
+        document.write(Dogs.name);
+
+        document.write("<br/>")
+
+        document.write(Dogs['age']);
+
+        document.write("<br/>")
+
+        var p1 = new dogs("Bruno", 5, "Brown", 4);
+        var p2 = new dogs("Riggs", 9, "White", 4);
+
+        document.write(p1.name);
+
+        document.write("<br/>")
+
+        document.write(p2["color"]);
+
+        document.write("<br/>")
+
+        function person(name, age) {
+            this.name = name;
+            this.age = age;
+            this.changeName = function (name){
+                this.name = name;
+            }
+        }
+
+        var person1 = new person("Mike", 20);
+        person1.changeName("Rex");
+        document.write(person1.name, " " , person1.age);
+        document.write("<br/>")
+
+        function newPerson(name, age) {
+            this.name = name;
+            this.age = age;
+            this.yearOfBirth = bornYear;
+        }
+
+        function bornYear () {
+            return 2016 - this.age;
+        }
+        var nPerson = new newPerson("Paul", 23);
+        document.write(nPerson.name, " " , nPerson.age, " ", nPerson.yearOfBirth());
+        
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var courses = ["HTML", "CSS", "JS"];
+        document.write(courses[0]);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var lessons = new Array(3);
+        lessons[0] = "Java";
+        lessons[1] = "Python";
+        lessons[2] = "Go";
+        document.write(lessons[2]);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        document.write(courses[0].concat(courses[2]));
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var sampleArr = [];
+        sampleArr["name"] = "Paul";
+        sampleArr["age"] = 23;
+
+        document.write(sampleArr["name"].concat(sampleArr["age"]));
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        document.write(Math.PI);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var mathSample1 = Math.sqrt(100);
+        document.write(mathSample1);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var ask1 = prompt("Enter a number to find its square root.", "");
+        var result = Math.sqrt(ask1);
+        alert("The square root of " + ask1 + " is " + result);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        /*function myAlert () {
+            alert("Hi");
+        }
+
+        setInterval(myAlert, 3000);*/
+
+        var d = new Date(99, 01, 07, 10, 30, 1);
+        document.write(d);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var d1= new Date();
+        document.write(d1);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        function DateTime () {
+            var date = new Date();
+            var year = date.getFullYear();
+            var hr = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+
+            var asf = 
+
+            document.getElementById("time").innerHTML = year + " : " +hr + " : " + min + " : " + sec;
+        }
+
+        setInterval(DateTime, 1000);
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var txt = document.getElementsByClassName("txt");
+        txt.innerHTML = "Hello World!";
+
+        document.write("<br/>")
+        document.write("<br/>")
+
+        var text = document.getElementsByClassName("txt");
+        text[1].innerHTML = "Wazzup";
+
+        for (var i = 0; i < text.length; i++) {
+            text[i].innerHTML = "WWWOOOOHHHHOOOOO";
+        }
+
+        //Changing Attributes
+        var image = document.getElementById("image");
+        image.src = "flower.jpg";
+
+        //change the link of google to facebook in the tag a
+        var newlink = document.getElementsByTagName("a");
+        newlink[1].href = "www.facebook.com";
+        newlink[1].innerHTML = "Facebook";
+
+        //Change using the "style" object
+        var txt = document.getElementById("someTxt");
+        txt.style.color = "yellow"; //Text color
+        txt.style.width = "20px"; //text width
+        txt.style.backgroundColor = "Blue"; //text background color
+
+        //Creating elements
+        var h1 = document.createElement("h1");
+        node = document.createTextNode("Highlighted Text");
+        h1.appendChild(node);
+
+        var div = document.getElementById("demo");
+        div.appendChild(h1);
+
+        //Removing elements
+        var parent = document.getElementById("hotdog");
+        var child = document.getElementById("p2");
+        parent.removeChild(child); //Removes tha paragraph 2
+
+        //Replace elements
+        var p = document.createElement("p");
+        var node = document.createTextNode("Ancient Paragraph");
+        p.appendChild(node);
+
+        var parParent = document.getElementById("par");
+        var parChild = document.getElementById("p31");
+        parParent.replaceChild(p, parChild);
+
+    </script>
+    
+</body>
+</html>
