@@ -9,6 +9,65 @@
 </head>
 <body>
 
+    <style>
+
+        #container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background-color: green;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+        }
+
+        #sliderContainer {
+            background-color: burlywood;
+            width: 350px;
+            height: 300px;
+        }
+
+        #imgSlider {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            box-sizing: border-box;
+            margin-top: 25px;
+        }
+
+    </style>
+
+    <form onsubmit="return validate()" method="post">
+        Number: <input type="text" name="num1" id="num1" />
+        <br />
+        Repeat: <input type="text" name="num2" id="num2" />
+        <br />
+        <input type="submit" value="Submit" />
+    </form>
+
+    <br/><br/><br/>
+
+    <div id="sliderContainer">
+        <button onclick="Prev()" id="Prev">Prev</button>
+        <img id="imgSlider" src="moon.jpg"/>
+        <button onclick="Next()" id="Next">Next</button>
+    </div>
+
+    <br/><br/><br/>
+
+    <button onclick="showAlert()">Show Alert</button>
+
+    <button id="showDate">Show Date</button>
+    <p id="pDate"></p>
+
+    <div id="container">
+        <div id="box"> </div>
+    </div>
+
     <div id="hotdog">
         <p id="p1">Paragraph 1</p>
         <p id="p2">Paragraph 2</p>
@@ -372,6 +431,75 @@
         var parParent = document.getElementById("par");
         var parChild = document.getElementById("p31");
         parParent.replaceChild(p, parChild);
+
+        //Animating a Box
+        var box = document.getElementById("box");
+        var pos = 0;
+
+        var t = setInterval(move, 500); //Put the setInterval into a variable
+
+        function move () {
+            if (pos != 150) {
+                pos+=10;
+                box.style.left = pos + "px";
+            } else {
+                clearInterval(t); //stops the animation
+            }
+        }
+
+        function showAlert () {
+            alert("This is an alert");
+        }
+
+        var date = document.getElementById("showDate");
+        var dateCatcher = document.getElementById("pDate");
+
+        date.onclick = function () {
+            dateCatcher.innerHTML = Date();
+        }
+
+        //Image Slider
+        var images = ["moon.jpg", "flower.jpg", "touch.jpg"]
+        //var prev = document.getElementById("Prev");
+        //var next = document.getElementById("Next");
+        var imgSlider = document.getElementById("imgSlider");
+        var counter = 0;
+
+        function Next () {
+            counter++;
+            if (counter >= images.length) {
+                counter = 0;
+            }
+            
+            imgSlider.src = images[counter];
+            
+        }
+
+        function Prev () {
+            counter--;
+            if (counter < 0) {
+                counter = images.length - 1;
+            }
+
+            imgSlider.src = images[counter];
+            
+        }
+
+        function validate () {
+            var num1 = document.getElementById("num1");
+            var num2 = document.getElementById("num2")
+
+            if (num1 != "" && num2 != "") {
+                if (num1.value == num2.value) {
+                    alert(num1.value + " is equals to " + num2.value);
+                    return true; //The form will be submitted
+                }
+            }
+
+            alert("Those two are not equal");
+            return false; //The form will not be submitteds
+        }
+    
 
     </script>
     
