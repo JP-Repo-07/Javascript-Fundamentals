@@ -41,6 +41,8 @@
 
     </style>
 
+    <p id="p101"></p>
+
     <form onsubmit="return validate()" method="post">
         Number: <input type="text" name="num1" id="num1" />
         <br />
@@ -499,7 +501,297 @@
             alert("Those two are not equal");
             return false; //The form will not be submitteds
         }
-    
+
+        //ES6
+        var na = 10; //variable a is declared globally and can access anywhere
+        let string = "Happy" //variable string is limited in scope to either function, statement or expression
+        const c = 35 //the same with "let" but the value cannot be change
+
+        let name = "Paul";
+        let msg = `Hello! ${name}`; //use backtick and not double or single quotes
+        console.log(msg);
+
+        //ES6 Loop
+        let list = ["a", "b", "c"];
+        for (let val of list) {
+            console.log(val);
+        }
+
+        //ES6 Functions
+        const greet = x => `Hello! ${x}`; //with arguments
+        let p101 = document.getElementById("p101");
+        p101.innerHTML = greet("Paul");
+
+        const greet1 = () => alert("Yo"); //without arguments
+
+        var arr1 = [2, 3, 7, 8]
+
+        arr1.forEach(v => {
+            console.log(v * 2);
+        });
+
+        //With default parameter values
+        const newFunc = (a = 5, b = 10) => {
+            console.log(`Total: ${a+b}`);   
+        }
+        
+        newFunc();
+
+        let tree = {
+            height: 10,
+            color: "green",
+            grow () {
+                this.height += 2;
+            }
+        }
+        tree.grow();
+        console.log(tree["height"]);
+
+        let speed = 50;
+        let health = 100;
+
+        let attributes = {
+            speed,
+            health
+        };
+        console.log(`Mark have ${attributes.speed} and ${attributes["health"]}`);
+
+        //Computed Property Names
+        //Example 1
+        let prop = 'name';
+        let id = '123';
+        let mobile = '09275516598'
+
+        let users = {
+            ['prop']: 'Jack',
+            [`user_${id}`]: `${mobile}`
+        };
+
+        console.log(`${users['prop']}, ${users[`user_${id}`]}`);
+
+        //Example 2
+        let someNum = 0;
+        var a = {
+            ['moo' + ++someNum]: someNum,
+            ['moo' + ++someNum]: someNum,
+            ['moo' + ++someNum]: someNum
+        };
+
+        console.log(a['moo' + ++someNum]);
+
+        //Example 3
+        let param = 'size';
+        let config = {
+            [param]: 12,
+            ['mobile' + param.charAt(0).toUpperCase + param.slice(1)]: 4
+        }
+
+        console.log(config.mobileSize);
+
+        let person2 = {
+            name: "Jack",
+            age: 18,
+            sex: "male"
+        }
+
+        let student = {
+            name: "Michelle",
+            age: 18,
+            sex: "female"
+        }
+
+        let newStudent = Object.assign({}, person2, student);
+
+        //Without Object.assign()
+        let newPerson2 = person2;
+        newPerson2.name = 'Bob';
+        
+        console.log(person2.name); //Bob
+        console.log(newPerson2.name); //stil Bob
+
+        newPerson2.name = 'Jack';
+
+        //With Object.assign()
+        let newPerson3 = Object.assign({}, person2, {name: "Marcus"}); //One way to assign new value
+        //newPerson3.name = "Marcus"; //Another way to assign new value
+
+        console.log(person2.name); //Jack
+        console.log(newPerson3.name); //Marcus (The base name is not affected)
+
+        //Destructuring
+        let arr2 = [1, 2, 3];
+        let [one, two, three] = arr2;
+
+        console.log(one); //arr2[0] = 1
+        console.log(two); //arr2[1] = 2
+        console.log(three); //arr2[2] = 3
+
+        let newA = () => {
+            return [1, 3, 2];
+        };
+
+        let [newOne, , newTwo] = newA();
+        console.log(newOne);
+        console.log(newTwo);
+
+        let someA, someB, someC = 15, someD = 20;
+        [someA, someB = 10] = [5]; //someA = 5, someB = 10
+        [someC, someD] = [someD, someC]; //someC = 20, someD = 15
+
+        console.log(someA, someB, someC, someD);
+
+        let obj = {
+            h: 100,
+            s: true
+        };
+        let {h, s} = obj;
+        console.log(h); //100
+        console.log(s); //true
+
+        let someGreet, someName;
+        ({someGreet, someName} = {someGreet: 'Hello', someName: 'Paul'})
+        console.log(someGreet, someName); //Hello Paul
+
+        let {someGreet1, someName1} = {someGreet1: 'How are your', someName1: 'Jhon'};
+        console.log(someGreet1, someName1);
+
+        //Assigning New Variable Name
+        let o = {k: 500, l: false}
+        let {k: foo, l: bar} = o;
+        console.log(foo); //New Variable foo = 500
+        //console.log(k); //Error
+        console.log(bar);
+
+        let obj1 = {Uid: 42, Lname: "Riops", newFname: "Nick"};
+        let {Uid = 10, newAge = 23, newFname} = obj1;
+        console.log(Uid);
+        console.log(newAge)
+        console.log(newFname);
+
+        //Rest and Spread
+        let Arr = [2, 4, 6, 7];
+        function containAll(array) {
+            for(let i = 1; i < arguments.length; i++) {
+                let num = arguments[i];
+                if (array.indexOf(num) === -1) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        console.log(containAll(Arr, 2, 4, 6));
+        console.log(containAll(Arr, 2, 7, 9));
+
+        //With Rest
+        function containsAll(newArray, ...nums) {
+            for(let num of nums) {
+                if(newArray.indexOf(num) === -1) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        console.log(containsAll(Arr, 2, 4, 6));
+        console.log(containsAll(Arr, 2, 7, 9));
+
+        function myFunction (w, x, y, z) {
+            console.log(w, x, y, z);
+        }
+        let args = [1, 3, 5];
+        myFunction.apply(null, args.concat(4));
+
+        //With Spread
+        const myFunction1 = (w, x, y, z) => { console.log(w, x, y, z); }
+
+        myFunction1(...args, 4);
+
+        let arr3 = [1, 3, 5];
+        arr3.splice(1, 0, 2); //Add 2 in the middle of 1 and 3 as index[1] suggest
+        arr3.splice(3, 4, 4); //Add 4 in the middle of 3 and 5 as index[4] suggest but remove 5 as index[4] suggest
+        console.log(arr3);
+
+        let newArray1 = [5, 6, 7];
+        let arr4 = [1, 2, 3, 4, ...newArray1];
+        console.log(arr4);
+
+        //ES6 Classes
+        class Rectangle {
+            constructor(height, width) {
+                this.height = height;
+                this.width = width;
+            }
+        }
+
+        const newHeight = new Rectangle(2, 5);
+
+        console.log(newHeight.height);
+
+        let shapes = class {
+            constructor(sides, height, width){
+                this.sides = sides;
+                this.height = height;
+                this.width = width;
+            }
+        }
+        const newShapes = new shapes(5, 10, 15);
+        console.log(newShapes.height);
+
+        class Square {
+            constructor(height, width) {
+                this.height = height;
+                this.width = width;
+            }
+
+            get area(){
+                return this.calcArea();        
+            }
+
+            calcArea(){
+                return this.height * this.width;
+            }
+        }
+
+        const square = new Square(5, 10);
+        console.log(square.area); //calls the area function that is also calling the calcArea method
+
+        class Point {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            static distance(a, b){
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                return Math.hypot(dx, dy);
+            }
+        }
+
+        const point1 = new Point(3, 4);
+        const point2 = new Point(5, 12);
+
+        console.log(Point.distance(point1, point2));
+
+        //Inheritance
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+            speak() {
+                console.log(this.name + ' make some noise');
+            }
+        }
+
+        class Dog extends Animal {
+            speak(){
+                super.speak();
+                console.log(this.name + ' bark');
+            }
+        }
+
+        //const rex = new Animal("Rex"); //Calls the Animal Function
+        const rex1 = new Dog ("Rex"); //Calls the Dog Function but Animal Function is the Parent
+        rex1.speak();
 
     </script>
     
