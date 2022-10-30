@@ -793,6 +793,121 @@
         const rex1 = new Dog ("Rex"); //Calls the Dog Function but Animal Function is the Parent
         rex1.speak();
 
+        //Maps and Sets
+
+        //MAPS
+        let map = new Map([['123', 'Paul'], ['456', 'Mark']]);
+        map.set('789', 'James'); //adds new value to the map
+        console.log(map.size); //display the size of the map
+        console.log(map.get('123')); //displays a value that corresponds to the inputed key '123 == 'Paul' if key does't exist it will return undefined'
+        console.log(map.has('456')); //returns true if specified key exist in the map, otherwise false
+        console.log(map.delete('123'));//deletes a key/value pair specified by the key and return true, otherwise false
+        console.log(map.entries()); //returns all key/value pairs inside a map
+        console.log(map.keys());// reutrns all key values inside a map
+        console.log(map.values());//returns all values inside a map
+
+
+        let personMap = new Map();
+        personMap.set('123', 'Mike').set('456', 'Hector').set('789', 'Will');
+        console.log(personMap.size);
+        console.log(personMap.get('456'));
+        console.log(personMap.has('789'));
+
+        for (let kv of personMap.entries()) {
+            console.log(kv[0] + ":" + kv[1]); //interates all key/value pairs and display accordingly
+        }
+
+        //SETS
+        let set = new Set([1, 2, 3, 4, 5]);
+        set.add(6);//adds new value to the set. Adds 6 to the set
+        set.add(7);//adds new value to the set. Adds 7 to the set
+        console.log(set.size);//returns the size/length of a set. Starts with 1 not 0
+        console.log(set.delete(3));//deletes a value to the set and return true, otherwise false. Here it deletes number 3
+        console.log(set.has(7));//return true if specified value exist, otherwise return false
+        console.log(set.values()); //returns a SetIterator of values in the set
+        set.clear();//clears all values inside a map
+        console.log(set.size);
+
+        let newSet = new Set();
+        newSet.add('a');
+        newSet.add('b');
+        newSet.add('c');
+
+        console.log(newSet.has('b'));
+
+        for (let v of newSet.values()) {
+            console.log(`id : ${v}`);
+        }
+
+        //Promises
+
+        //Normal
+        setTimeout(function(){
+            console.log("Work 1");
+            setTimeout(function(){
+                console.log("Work 2");
+            }, 1000)
+        }, 1000);
+        console.log('End');
+
+        //Promise
+        /*new Promise(function(resolve, reject){
+            //code
+            if (success){
+                resolve(result);
+            }else{
+                reject(Error("Failed"));
+            }
+        });*/
+
+        function asyncFunc(work){
+            return new Promise(function(resolve, reject){
+                if (work === "") {
+                    reject(Error("Nothing"));
+                }else{
+                    setTimeout(function(){
+                        resolve(work);
+                    }, 1000);
+                }
+            });
+        }
+
+        asyncFunc("Work 1") //Task 1
+        .then(function(result){
+            console.log(result);
+            return asyncFunc("Work 5"); //Task 2
+        }, function(error){
+            console.log("Error");
+        })
+        .then(function(result){
+            console.log(result);
+        }, function(error){
+            console.log(error);
+        });
+        console.log("End");
+
+        //Iterators and Generators
+        //Symbol.iterator
+        // '*' is called generator function or gen functions
+        
+        const arr5 = ['1', 'a', '2', 'b', '45', 'aba', '1A4B'];
+
+        const my_Obj = {
+            [Symbol.iterator]: function* () {
+                for (let index of arr5){
+                    yield `${index}`;
+                }
+            }
+        };
+
+        const all = [...my_Obj]
+        .map(i => parseInt(i, 10))
+        .map(Math.sqrt)
+        .filter((i) => i < 5)
+        .reduce((i, d) => i + d);
+
+        console.log(all);
+
     </script>
     
 </body>
